@@ -1,0 +1,29 @@
+{
+  "name": "cheeku",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "author": "GoodBoyNeon",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "start": "bun run src/index.ts",
+    "dev": "bun --watch src/index.ts",
+    "pretty": "prettier --write \"src/**/*.ts\""
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@types/bun": "^1.0.12",
+    "bun-types": "latest",
+    "globals": "^15.0.0",
+    "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.12.1",
+    "@sapphire/pieces": "^4.2.2",
+    "axios": "^1.6.8",
+    "console-wizard": "^1.4.2",
+    "discord.js": "^14.14.1",
+    "prisma": "^5.12.1"
+  }
+}
