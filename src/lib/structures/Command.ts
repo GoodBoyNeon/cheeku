@@ -1,5 +1,5 @@
 import { Piece } from '@sapphire/pieces';
-import { Awaitable, Message } from 'discord.js';
+import type { Awaitable, Message } from 'discord.js';
 
 export interface CommandOptions {
   name?: string;

@@ -46,7 +46,7 @@ declare module 'discord.js' {
   interface Client {
     id: Snowflake | null;
   }
-  interface ClientOptions extends ExtendedClientOptions {}
+  interface ClientOptions extends ExtendedClientOptions { }
 }
 
 declare module '@sapphire/pieces' {

@@ -1,4 +1,4 @@
-import { Awaitable, ClientEvents } from 'discord.js';
+import type { Awaitable, ClientEvents } from 'discord.js';
 import { Client } from '..';
 import { EventEmitter } from 'events';
 import { Piece } from '@sapphire/pieces';
@@ -25,7 +25,7 @@ export abstract class Listener<E extends keyof ClientEvents> extends Piece {
     this.once ? this.container.client.once(this.event, this._listener) : this.container.client.on(this.event, this._listener);
   }
 
-  private _run(...args: ClientEvents[E]) {
+  private _run(...args: ClientEvents[E]): Awaitable<void> {
     this.run(...args);
   }
 }

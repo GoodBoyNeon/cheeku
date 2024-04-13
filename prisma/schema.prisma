@@ -15,7 +15,7 @@ model Tag {
   updatedAt DateTime?
   type      TagType
   content   String
-  User      User      @relation(fields: [ownerId], references: [userId])
+  owner     User      @relation(fields: [ownerId], references: [userId])
 }
 
 model User {

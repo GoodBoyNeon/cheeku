@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "ESNext"
-    ],
+    "lib": ["ESNext"],
     "target": "ESNext",
     "module": "ESNext",
     "moduleDetection": "force",
@@ -10,7 +8,7 @@
     /* Bundle with Bun */
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
-    // "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": true,
     "noEmit": true,
     /* Strict */
     "strict": true,
@@ -22,6 +20,8 @@
     "newLine": "lf",
     "pretty": true,
     "removeComments": false,
-    "baseUrl": "./src"
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
 }

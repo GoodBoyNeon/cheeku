@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
-import { Listener } from '../lib/structures/Listener';
-import { config } from 'config';
+import { Listener } from '@/lib/structures';
+import { config } from '@/config';
 
 export default class MessageCreateListener extends Listener<'messageCreate'> {
   async run(message: Message) {
