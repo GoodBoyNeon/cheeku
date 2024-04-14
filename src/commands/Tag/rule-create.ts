@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
-import { createTag } from '@/lib/modules';
-import { Command, type Props } from '@/lib/structures';
+import { createTag } from '../../lib/modules';
+import { Command, type Props } from '../../lib/structures';
 
 export default class TagCreateCommand extends Command {
   constructor(context: Props) {

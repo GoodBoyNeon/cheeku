@@ -3,12 +3,14 @@ import path from 'path';
 import { getAllFiles } from '../utils/getAllFiles';
 import { Command } from '../structures/Command';
 
-const commands = getAllFiles(path.join(__dirname, '..', '..', 'commands')).filter((n) => n.endsWith('.ts') || n.endsWith('.js'));
+const EXT = process.env.NODE_ENV === 'development' ? '.ts' : '.js';
+
+const commands = getAllFiles(path.join(__dirname, '..', '..', 'commands')).filter((n) => n.endsWith(EXT));
 
 commands.forEach(async (command) => {
   const CommandClass = (await import(command)).default;
 
-  const name = path.basename(command, '.ts');
+  const name = path.basename(command, EXT);
   const category = path.dirname(command).split('/').at(-1);
 
   const cmd = new CommandClass({

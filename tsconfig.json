@@ -1,27 +1,22 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "allowJs": true,
-    /* Bundle with Bun */
-    "moduleResolution": "Bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-    /* Strict */
-    "strict": true,
+    "module": "CommonJS",
+    "target": "esnext",
     "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "exactOptionalPropertyTypes": false,
-    /* Consistency */
-    "newLine": "lf",
-    "pretty": true,
-    "removeComments": false,
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "allowJs": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo"
+  },
+  "include": ["src/**/*", "environment.d.ts"],
+  "exclude": ["node_modules/", "dist/"]
 }

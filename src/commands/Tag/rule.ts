@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
-import { fetchTag } from '@/lib/modules';
-import { Command, type Props } from '@/lib/structures';
+import { fetchTag } from '../../lib/modules';
+import { Command, type Props } from '../../lib/structures';
 
 export default class RuleCommand extends Command {
   public constructor(context: Props) {

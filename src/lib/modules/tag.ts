@@ -1,6 +1,6 @@
 import type { Tag, TagType } from '@prisma/client';
 import { Message } from 'discord.js';
-import { prisma } from '@/lib/controllers/';
+import { prisma } from '../controllers/';
 
 export const fetchTag = async (name: string, type: TagType): Promise<Tag | null> => {
   const tag = await prisma.tag.findUnique({

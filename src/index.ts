@@ -1,9 +1,9 @@
 import { config } from './config';
-import { Client } from './lib';
+import { Client } from './lib/structures';
 
 import './lib/controllers/bootstrapListeners';
 
-process.env.NODE_ENV ??= 'development';
+process.env.NODE_ENV ??= 'production';
 
 void (async () => {
   const client = new Client({
@@ -15,9 +15,10 @@ void (async () => {
   await client.init();
 })();
 
-declare module 'bun' {
-  interface Env {
-    DISCORD_TOKEN: string;
-    GOOGLE_API_KEY: string;
-  }
-}
+// declare module 'bun' {
+//   interface Env {
+//     DISCORD_TOKEN: string;
+//     GOOGLE_API_KEY: string;
+//   }
+// }
+//

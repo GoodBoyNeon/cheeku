@@ -1,5 +1,5 @@
-import { Command, type Props } from '@/lib/structures';
-import { deleteTag } from '@/lib/modules';
+import { Command, type Props } from '../../lib/structures';
+import { deleteTag } from '../../lib/modules';
 import type { Message } from 'discord.js';
 
 export default class TagDeleteCommand extends Command {

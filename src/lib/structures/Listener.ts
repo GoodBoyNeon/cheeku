@@ -1,13 +1,12 @@
-import type { Awaitable, ClientEvents } from 'discord.js';
-import { Client } from '..';
-import { EventEmitter } from 'events';
+import { Client } from './Client';
 import { Piece } from '@sapphire/pieces';
+import type { Awaitable, ClientEvents } from 'discord.js';
 
 export abstract class Listener<E extends keyof ClientEvents> extends Piece {
   public readonly event: E;
   public readonly once: boolean;
 
-  private _listener: (...args: any[]) => void;
+  private _listener: (...args: ClientEvents[E]) => Awaitable<void>;
 
   constructor(context: Piece.LoaderContext, event: E, once: boolean) {
     super(context);
@@ -31,7 +30,7 @@ export abstract class Listener<E extends keyof ClientEvents> extends Piece {
 }
 
 export interface ListenerOptions extends Piece.Options {
-  readonly emitter?: keyof Client | EventEmitter;
+  readonly emitter?: keyof Client;
   readonly event?: string | symbol;
   readonly once?: boolean;
 }

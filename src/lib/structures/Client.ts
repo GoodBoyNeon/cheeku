@@ -36,7 +36,7 @@ export class Client<Ready extends boolean = boolean> extends DjsClient<Ready> {
       ],
     };
 
-    await this.login(process.env.DISCORD_TOKEN);
+    await this.login(process.env['DISCORD_TOKEN']);
 
     logger.info(`[CLIENT] Connected! Took ${Date.now() - start}ms`);
   }
@@ -46,7 +46,7 @@ declare module 'discord.js' {
   interface Client {
     id: Snowflake | null;
   }
-  interface ClientOptions extends ExtendedClientOptions { }
+  interface ClientOptions extends ExtendedClientOptions {}
 }
 
 declare module '@sapphire/pieces' {
