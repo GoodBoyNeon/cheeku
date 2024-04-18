@@ -7,7 +7,7 @@ export default class TagCreateCommand extends Command {
     super(context, {
       description: 'Create a rule tag',
       aliases: ['rcreate', 'rulecreate', 'crule', 'createrule'],
-      // staffOnly: true,
+      staffOnly: true,
     });
   }
 

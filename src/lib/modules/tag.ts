@@ -2,11 +2,12 @@ import type { Tag, TagType } from '@prisma/client';
 import { Message } from 'discord.js';
 import { prisma } from '../controllers/';
 
-export const fetchTag = async (name: string, type: TagType): Promise<Tag | null> => {
-  const tag = await prisma.tag.findUnique({
+export const fetchTag = async (name: string): Promise<Tag | null> => {
+  const tag = await prisma.tag.findFirst({
     where: {
-      name,
-      type,
+      aliases: {
+        has: name,
+      },
     },
   });
 
@@ -14,15 +15,26 @@ export const fetchTag = async (name: string, type: TagType): Promise<Tag | null>
 };
 
 export const createTag = async (message: Message, args: string[], type: TagType) => {
-  const name = args.join(' ');
+  if (args.length < 1) {
+    await message.reply('Enter tag name(s)!');
+    return;
+  }
 
-  if (name.length < 1) {
-    await message.reply('Enter tag name!');
+  const tags = await prisma.tag.findMany({
+    where: {
+      aliases: {
+        hasSome: args,
+      },
+    },
+  });
+
+  if (tags.length > 0) {
+    await message.reply('Tag name and aliases must be unique!');
     return;
   }
 
   await message.reply(
-    `Creating \`${type.toLowerCase()}\` tag **${name}**:\n\nEnter the content of the tag as your next message. You have 30 seconds to do so.`,
+    `Creating \`${type.toLowerCase()}\` tag **${args[0]}**:\n\nEnter the content of the tag as your next message. You have 30 seconds to do so.`,
   );
 
   const collector = message.channel.createMessageCollector({
@@ -41,7 +53,7 @@ export const createTag = async (message: Message, args: string[], type: TagType)
     await prisma.tag
       .create({
         data: {
-          name,
+          aliases: args,
           type,
           content: msg.content,
           owner: {
@@ -63,7 +75,7 @@ export const createTag = async (message: Message, args: string[], type: TagType)
       });
 
     if (exit) return;
-    msg.reply(`Your tag ${name} was created successfully!`);
+    msg.reply(`Your tag was created successfully!`);
     return;
   });
 
@@ -76,17 +88,19 @@ export const createTag = async (message: Message, args: string[], type: TagType)
 };
 
 export const deleteTag = async (message: Message, args: string[], type: TagType) => {
-  const name = args.join(' ');
+  const name = args[0];
 
-  if (name.length < 1) {
+  if (typeof name !== 'string' || name.length < 1) {
     await message.reply('Enter tag name!');
     return;
   }
 
   await prisma.tag
-    .delete({
+    .deleteMany({
       where: {
-        name,
+        aliases: {
+          has: name,
+        },
         type,
       },
     })

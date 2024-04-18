@@ -1,13 +1,13 @@
+process.env.NODE_ENV ??= 'development';
+
 import { config } from './config';
 import { Client } from './lib/structures';
 
 import './lib/controllers/bootstrapListeners';
 
-process.env.NODE_ENV ??= 'production';
-
 void (async () => {
   const client = new Client({
-    prefix: '.',
+    prefix: '?',
     intents: config.intents,
     partials: config.partials,
   });

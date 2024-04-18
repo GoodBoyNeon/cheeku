@@ -12,6 +12,7 @@ interface ExtendedClientOptions {
 
 export class Client<Ready extends boolean = boolean> extends DjsClient<Ready> {
   public commands: Map<string, Command>;
+  public rawCommands: Map<string, Command>;
 
   constructor(options: ClientOptions) {
     super(options);
@@ -19,6 +20,7 @@ export class Client<Ready extends boolean = boolean> extends DjsClient<Ready> {
     container.client = this;
 
     this.commands = new Map();
+    this.rawCommands = new Map();
   }
 
   public async init() {

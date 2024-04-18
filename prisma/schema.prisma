@@ -9,7 +9,7 @@ datasource db {
 
 model Tag {
   id        Int       @id @default(autoincrement())
-  name      String    @unique @db.VarChar(32)
+  aliases   String[]  @unique @db.VarChar(32)
   ownerId   String
   createdAt DateTime  @default(now())
   updatedAt DateTime?

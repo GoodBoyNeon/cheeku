@@ -18,6 +18,7 @@ commands.forEach(async (command) => {
     name,
     category,
   }) as Command;
+  container.client.rawCommands.set(cmd['_name'], cmd);
 
   container.client.commands.set(cmd._name, cmd);
   if (cmd.aliases.length > 0) for (const alias of cmd.aliases) container.client.commands.set(alias, cmd);

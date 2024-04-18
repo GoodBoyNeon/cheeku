@@ -1,6 +1,7 @@
 import { Message } from 'discord.js';
 import { Listener } from '../lib/structures';
 import { config } from '../config';
+import { fetchTag } from '../lib/modules';
 
 export default class MessageCreateListener extends Listener<'messageCreate'> {
   async run(message: Message) {
@@ -8,6 +9,12 @@ export default class MessageCreateListener extends Listener<'messageCreate'> {
 
     if (message.content.startsWith(this.container.client.options.prefix)) {
       await this.handleCommands(message);
+      return;
+    }
+
+    if (message.content.startsWith('-')) {
+      await this.handleTags(message, message.content.substring(1));
+      return;
     }
   }
 
@@ -43,5 +50,20 @@ export default class MessageCreateListener extends Listener<'messageCreate'> {
     }
 
     await command.run(message, args);
+  }
+
+  private async handleTags(message: Message, name: string) {
+    if (name.length < 1) {
+      await message.reply('Enter tag name!');
+      return;
+    }
+    const tag = await fetchTag(name);
+
+    if (!tag) {
+      await message.reply('Tag not found!');
+      return;
+    }
+
+    await message.channel.send(tag.content);
   }
 }

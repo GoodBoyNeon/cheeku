@@ -7,7 +7,6 @@ export default class TagCreateCommand extends Command {
     super(context, {
       description: 'Create a info tag',
       aliases: ['icreate', 'infocreate', 'cinfo', 'createinfo'],
-      staffOnly: true,
     });
   }
 
