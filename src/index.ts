@@ -1,7 +1,7 @@
-process.env.NODE_ENV ??= 'development';
-
 import { config } from './config';
 import { Client } from './lib/structures';
+
+process.env.NODE_ENV ??= 'development';
 
 import './lib/controllers/bootstrapListeners';
 
