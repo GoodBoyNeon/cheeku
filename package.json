@@ -5,7 +5,7 @@
   "author": "GoodBoyNeon",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist/ && tsc",
     "start": "node .",
     "dev": "bun --watch src/index.ts",
     "pretty": "prettier --write \"src/**/*.ts\""

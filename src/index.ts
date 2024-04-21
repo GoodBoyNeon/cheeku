@@ -7,7 +7,7 @@ import './lib/controllers/bootstrapListeners';
 
 void (async () => {
   const client = new Client({
-    prefix: '.',
+    prefix: '?',
     intents: config.intents,
     partials: config.partials,
   });
